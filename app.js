@@ -40,22 +40,22 @@ app.get("/todos/", async (request, response) => {
   if (priority !== undefined && status !== undefined) {
     getQuery = `
       select * from todo where
-      todo like '${search_q}' and 
+      todo like '%${search_q}%' and 
       priority='${priority}' and status='${status}'
       `;
   } else if (priority !== undefined && status === undefined) {
     getQuery = `
       select * from todo where
-      todo like '${search_q}' and priority='${priority}'
+      todo like '%${search_q}%' and priority='${priority}'
       `;
   } else if (priority === undefined && status !== undefined) {
     getQuery = `
       select * from todo where
-      todo like '${search_q}' and status='${status}'
+      todo like '%${search_q}%' and status='${status}'
       `;
   } else {
     getQuery = `select * from todo where
-      todo like '${search_q}'`;
+      todo like '%${search_q}%'`;
   }
 
   const getResponse = await dataBase.all(getQuery);
